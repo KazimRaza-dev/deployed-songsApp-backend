@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "*"
+mysqlclient = "*"
+djangorestframework-simplejwt = "*"
+django-taggit = "*"
+celery = "*"
+pytz = "*"
+django-filter = "*"
+python-dotenv = "*"
+django-sendgrid-v5 = "*"
+certifi = "*"
+django-rest-passwordreset = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
