@@ -4,7 +4,6 @@
 *.pyc
 __pycache__
 media
-staticfiles
 
 # Backup files #
 *.bak
@@ -136,7 +135,6 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
-staticfiles/*
 
 # MacOS
 .DS_Store
