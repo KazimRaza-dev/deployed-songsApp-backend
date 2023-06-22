@@ -16,6 +16,7 @@ certifi = "*"
 django-rest-passwordreset = "*"
 gunicorn = "*"
 redis = "*"
+django-redis = "*"
 
 [dev-packages]
 

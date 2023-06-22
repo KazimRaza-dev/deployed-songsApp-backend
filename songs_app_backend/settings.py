@@ -15,6 +15,7 @@ from pathlib import Path
 from datetime import timedelta
 import dotenv
 import os
+import redis
 
 dotenv.load_dotenv()
 
@@ -197,3 +198,43 @@ EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 
 PASSWORD_RESET_TOKEN_EXPIRES = os.getenv('PASSWORD_RESET_TOKEN_EXPIRES_MNTS')
+
+
+# Configure Redis connection
+redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
+redis_client = redis.Redis.from_url(redis_url)
+
+
+# Configure Redis connection
+redis_url = os.getenv('REDIS_URL')
+redis_host = os.getenv('REDISHOST')
+redis_password = os.getenv('REDISPASSWORD')
+redis_port = int(os.getenv('REDISPORT', 6379))
+redis_user = os.getenv('REDISUSER')
+
+redis_client = redis.Redis(
+    host=redis_host,
+    port=redis_port,
+    password=redis_password,
+    username=redis_user
+)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+        'OPTIONS': {
+            'MAX_ENTRIES': 10000,
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'CONNECTION_POOL_KWARGS': {'max_connections': 100}
+        },
+    },
+    'redis': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': redis_url,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+    },
+}
+
