@@ -15,6 +15,7 @@ django-sendgrid-v5 = "*"
 certifi = "*"
 django-rest-passwordreset = "*"
 gunicorn = "*"
+redis = "*"
 
 [dev-packages]
 
